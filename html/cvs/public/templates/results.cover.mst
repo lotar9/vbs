@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Resultados {{header}}</div>
+	<div class="panel-body">
+		<table class="table table-condensed">
+{{#results}}
+	<tr class="danger"><td>{{category_name}}</td></tr>
+	{{#matches}}
+		<tr class="active"><td>{{category}}
+			{{#has_chronicle}}
+				<button onclick="window.open('{{chronicle_link}}')" target="_blank" type="button" class="btn btn-default btn-xs pull-right">
+					<span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
+				</button>
+			{{/has_chronicle}}
+		</td></tr>
+		<tr><td>{{local}} <span class="badge">{{local_sets}}</span> - {{visiting}} <span class="badge">{{visiting_sets}}</span></td></tr>
+		<tr><td>{{partial_results}}</td></tr>
+	{{/matches}}
+{{/results}}
+		</table>
+	</div>
+</div>

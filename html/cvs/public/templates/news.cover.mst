@@ -1,0 +1,14 @@
+<div class="row">
+{{#news}}
+<div class="col-sm-6 col-xs-12">
+	<div class="panel panel-default">
+	  <div class="panel-heading">{{subject}}</div>
+	  <div class="panel-body">
+	    {{{body}}}
+	  </div>
+	</div>
+</div>
+{{/news}}
+</div>
+
+
