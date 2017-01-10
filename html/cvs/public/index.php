@@ -6,6 +6,7 @@ use Phalcon\Mvc\Micro;
 error_reporting(E_ALL);
 ini_set('display_errors',true);
 
+
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
 
@@ -40,8 +41,8 @@ try {
     $application->get(
     	"/api/results.cover",
     	function () use ($application){
-    		$data = ['header'=>'19 - 20 Nov', 'results'=>array()];	
-	    	$conditions = [ "cover = 1" ];//,"order"=>"parent_category,order"];
+    		$data = ['header'=>'19 - 20 Nov', 'results'=>array()];
+	    	$conditions = [ "cover = 1 and finished = 1" ];//,"order"=>"parent_category,order"];
 	    	$lastCategory = null;
 	    	$currentCategory = null;
 	    	foreach (Matches::find($conditions) as $row){
@@ -54,7 +55,7 @@ try {
 	    		}
 	    		$currentCategory['matches'][] = array_merge(
 		    										array('has_chronicle'=> filter_var($row->getChronicleLink(), FILTER_VALIDATE_URL)),
-		    										$row->toArray() 
+		    										$row->toArray()
 	    										);
 
 	    	}
@@ -66,8 +67,8 @@ try {
     $application->get(
     	"/api/matches.cover",
     	function () use ($application){
-    		$data = ['header'=>'26 - 27 Nov', 'matches'=>array()];	
-	    	$conditions = [ "cover = 1" , "order"=>array("parent_category","order")];
+    		$data = ['header'=>'26 - 27 Nov', 'matches'=>array()];
+	    	$conditions = [ "cover = 1 and finished = 0", "order"=>array("parent_category","order")];
 	    	$lastCategory = null;
 	    	$currentCategory = null;
 	    	foreach (Matches::find($conditions) as $row){
@@ -78,9 +79,14 @@ try {
 	    			$currentCategory = array('category_name' => $row->getParentCategory(),'match'=>[]);
 	    			$lastCategory = $row->getParentCategory();
 	    		}
+
+
 	    		$currentCategory['match'][] = array_merge(
-		    										array('has_chronicle'=> filter_var($row->getChronicleLink(), FILTER_VALIDATE_URL)),
-		    										$row->toArray() 
+		    										array(
+                                                        'has_chronicle'=> filter_var($row->getChronicleLink(), FILTER_VALIDATE_URL),
+                                                        '_date' =>  (new DateTime($row->getScheduled()))->format('d-m H:i')
+                                                    ),
+		    										$row->toArray()
 	    										);
 
 	    	}
@@ -89,12 +95,19 @@ try {
     	}
     );
 
+    $application->get(
+        '/api/carousel.active',
+        function () use ($application){
+            echo json_encode(array());
+        }
+    );
+
 
 
     $application->get(
     	"/api/menus",
     	function () use ($application){
-    		$data = ['menus'=>array()];	
+    		$data = ['menus'=>array()];
 	    	$conditions = [ "visible =1" ];
 	    	foreach (Menus::find($conditions) as $row){
 	    		$data['menus'][] = $row->toArray();
@@ -106,8 +119,7 @@ try {
     $application->get(
     	"/api/news.cover",
 	    function () use ($application) {
-	    	sleep(5);	
-	    	$data = ['news'=>array()];	
+	    	$data = ['news'=>array()];
 	    	$conditions = [ "cover = 1 and visible =1" ];
 	    	foreach (News::find($conditions) as $row){
 	    		$data['news'][] = $row->toArray();

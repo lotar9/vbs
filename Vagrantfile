@@ -70,7 +70,7 @@ Vagrant.configure(2) do |config|
     curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | sudo bash
     sudo add-apt-repository ppa:ondrej/php
     sudo apt-get update
-    sudo apt-get install -y apache2 php7.0-phalcon php7.0-mysql php7.0-cli git
+    sudo apt-get install -y apache2 php7.0-phalcon php7.0-mysql php7.0-sqlite3 php7.0-cli git
     sudo apt-get install -y libapache2-mod-php7.0
     sudo cat <<EOT >> /etc/apache2/conf-available/rewrite-html.conf
 <Directory /var/www/html>

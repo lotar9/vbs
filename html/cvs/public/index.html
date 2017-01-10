@@ -34,19 +34,26 @@
 			load_template('results.cover.mst','results.cover','resultsContainer');
 			load_template('matches.cover.mst', 'matches.cover','matchesContainer');
 			load_template('news.cover.mst','news.active','newsContainer');
+            load_template('carousel.cover.mst','carousel.active','carouselContainer');
 		});
 	</script>
+    <style>
+        .header{
+            margin-bottom: 20px;
+        }
+    </style>
   </head>
   <body>
   	<div class="container">
 
   		<div id="menuContainer"></div>
-
-  		<div class="col-xs-12"><img src="files/header.png" class="img-responsive center-block"></div>
+  		<div class="col-xs-12 header"><img src="files/header.png" class="img-responsive center-block"></div>
+  		<div class="col-sm-6 col-xs-12" id="matchesContainer"></div>
+        <div class="col-sm-6 col-xs-12" id="carouselContainer">dsfsdfdsf</div>
   		<div class="col-xs-12 col-sm-3" id="resultsContainer"></div>
 
   		<div class="col-sm-9 col-xs-12" id="newsContainer"></div>
-  		<div class="col-sm-12 col-xs-12" id="matchesContainer"></div>
+
 
     </div>
 
@@ -56,7 +63,3 @@
 
   </body>
 </html>
-
-
-
-

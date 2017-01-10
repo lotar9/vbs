@@ -6,15 +6,10 @@
 				{{category_name}}
 				<div class="row">
 				{{#match}}
-					<div class="col-sm-4">
-						{{category}}<br/>
-						{{local}} <span class="badge">{{local_sets}}</span> - {{visiting}} <span class="badge">{{visiting_sets}}</span>
-						{{#has_chronicle}}
-							<button onclick="window.open('{{chronicle_link}}')" target="_blank" type="button" class="btn btn-default btn-xs">
-								<span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
-							</button>
-						{{/has_chronicle}}
-						<br/><small>{{partial_results}}</small>
+					<div class="col-sm-3">
+						{{category}} {{_date}}<br/>
+						{{local}}  - {{visiting}}
+						<br/><small>{{location}}</small>
 					</div>
 				{{/match}}
 				</div>

@@ -12,7 +12,7 @@ return new \Phalcon\Config([
         'host'        => '',
         'username'    => '',
         'password'    => '',
-        'dbname'      => '/home/vagrant/cvs.db',
+        'dbname'      => APP_PATH . '/db/cvs.db',
         'charset'     => '',
     ],
     'application' => [
